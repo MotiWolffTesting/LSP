@@ -56,26 +56,41 @@
     // }
 
     // 4
-    public static void SumBalance(List<BankAccount> accounts)
+    public static decimal SumCashAccounts(List<CashAccount> accounts)
     {
         decimal total = 0;
         foreach (var account in accounts)
         {
-            total += account.GetAvailableBalance();
+            total += account.GetAmount();
         }
-        Console.WriteLine($"Total Balance: {total}");
+        return total;
+    }
+
+    public static decimal SumLoanAccounts(List<LoanAccount> accounts)
+    {
+        decimal total = 0;
+        foreach (var account in accounts)
+        {
+            total += account.GetAmount();
+        }
+        return total;
     }
 
     public static void Main()
     {
-        var accounts = new List<BankAccount>
+        var cashAccounts = new List<CashAccount>
         {
-            new BankAccount(1000),
-            new BankAccount(500)
+            new CashAccount(1000),
+            new CashAccount(500)
         };
-        SumBalance(accounts); // 1500
+        var loanAccounts = new List<LoanAccount>
+        {
+            new LoanAccount(200)
+        };
 
-        accounts.Add(new DebtAccount(200));
-        SumBalance(accounts); // 1300 is confusing
+        Console.WriteLine($"Total cash: {SumCashAccounts(cashAccounts)}");
+        Console.WriteLine($"Total loans: {SumLoanAccounts(loanAccounts)}");
+        Console.WriteLine($"Net worth: {SumCashAccounts(cashAccounts) - SumLoanAccounts(loanAccounts)}");
+
     }
 }
