@@ -50,7 +50,7 @@
         var pdfExporter = new DocumentExporter();
         ExportDocument(pdfExporter);
 
-        // Throwing error
+        // Throwing  error
         var onlineEporter = new OnlineEporter();
         try
         {
