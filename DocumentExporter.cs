@@ -1,4 +1,4 @@
-public class DocumentExporter
+public class DocumentExporter : IPdfExporter
 {
     public virtual void ExportToPDF()
     {

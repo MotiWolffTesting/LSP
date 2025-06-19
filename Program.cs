@@ -39,7 +39,7 @@
     // }
 
     // 3
-    public static void ExportDocument(DocumentExporter exporter)
+    public static void ExportDocument(IPdfExporter exporter)
     {
         exporter.ExportToPDF();
     }
@@ -50,15 +50,8 @@
         var pdfExporter = new DocumentExporter();
         ExportDocument(pdfExporter);
 
-        // Throwing  error
+        // Fixing to use interface
         var onlineEporter = new OnlineEporter();
-        try
-        {
-            ExportDocument(onlineEporter);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
+        onlineEporter.ExportToHTML();
     }
 }
