@@ -16,25 +16,49 @@
     // }
 
     // 2
-    public static void TestRectangleArea(Rectangle rectangle)
-    {
-        rectangle.Width = 5;
-        rectangle.Height = 10;
-        Console.WriteLine($"Rectangle Area: {rectangle.Area()}");
-    }
+    // public static void TestRectangleArea(Rectangle rectangle)
+    // {
+    //     rectangle.Width = 5;
+    //     rectangle.Height = 10;
+    //     Console.WriteLine($"Rectangle Area: {rectangle.Area()}");
+    // }
 
-    public static void TestSquareArea(Square square)
+    // public static void TestSquareArea(Square square)
+    // {
+    //     square.Side = 5;
+    //     Console.WriteLine($"Square Area: {square.Area()}");
+    // }
+
+    // public static void Main()
+    // {
+    //     Rectangle rectangle = new Rectangle();
+    //     Square square = new Square();
+
+    //     TestRectangleArea(rectangle); // 50
+    //     TestSquareArea(square); // 25 - Correct!
+    // }
+
+    // 3
+    public static void ExportDocument(DocumentExporter exporter)
     {
-        square.Side = 5;
-        Console.WriteLine($"Square Area: {square.Area()}");
+        exporter.ExportToPDF();
     }
 
     public static void Main()
     {
-        Rectangle rectangle = new Rectangle();
-        Square square = new Square();
+        // Working
+        var pdfExporter = new DocumentExporter();
+        ExportDocument(pdfExporter);
 
-        TestRectangleArea(rectangle); // 50
-        TestSquareArea(square); // 25 - Correct!
+        // Throwing error
+        var onlineEporter = new OnlineEporter();
+        try
+        {
+            ExportDocument(onlineEporter);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 }
