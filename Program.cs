@@ -56,41 +56,73 @@
     // }
 
     // 4
-    public static decimal SumCashAccounts(List<CashAccount> accounts)
-    {
-        decimal total = 0;
-        foreach (var account in accounts)
-        {
-            total += account.GetAmount();
-        }
-        return total;
-    }
+    // public static decimal SumCashAccounts(List<CashAccount> accounts)
+    // {
+    //     decimal total = 0;
+    //     foreach (var account in accounts)
+    //     {
+    //         total += account.GetAmount();
+    //     }
+    //     return total;
+    // }
 
-    public static decimal SumLoanAccounts(List<LoanAccount> accounts)
+    // public static decimal SumLoanAccounts(List<LoanAccount> accounts)
+    // {
+    //     decimal total = 0;
+    //     foreach (var account in accounts)
+    //     {
+    //         total += account.GetAmount();
+    //     }
+    //     return total;
+    // }
+
+    // public static void Main()
+    // {
+    //     var cashAccounts = new List<CashAccount>
+    //     {
+    //         new CashAccount(1000),
+    //         new CashAccount(500)
+    //     };
+    //     var loanAccounts = new List<LoanAccount>
+    //     {
+    //         new LoanAccount(200)
+    //     };
+
+    //     Console.WriteLine($"Total cash: {SumCashAccounts(cashAccounts)}");
+    //     Console.WriteLine($"Total loans: {SumLoanAccounts(loanAccounts)}");
+    //     Console.WriteLine($"Net worth: {SumCashAccounts(cashAccounts) - SumLoanAccounts(loanAccounts)}");
+
+    // }
+
+    // 5
+    public static void RunValidation(List<Validator> validators, string input)
     {
-        decimal total = 0;
-        foreach (var account in accounts)
+        foreach (var validator in validators)
         {
-            total += account.GetAmount();
+            try
+            {
+                bool result = validator.IsValid(input);
+                Console.WriteLine($"{validator.GetType().Name}: {result}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{validator.GetType().Name}: Exception {ex.Message}");
+            }
         }
-        return total;
     }
 
     public static void Main()
     {
-        var cashAccounts = new List<CashAccount>
+        var validators = new List<Validator>
         {
-            new CashAccount(1000),
-            new CashAccount(500)
-        };
-        var loanAccounts = new List<LoanAccount>
-        {
-            new LoanAccount(200)
+            new Validator(),
+            new StrictValidator()
         };
 
-        Console.WriteLine($"Total cash: {SumCashAccounts(cashAccounts)}");
-        Console.WriteLine($"Total loans: {SumLoanAccounts(loanAccounts)}");
-        Console.WriteLine($"Net worth: {SumCashAccounts(cashAccounts) - SumLoanAccounts(loanAccounts)}");
+        Console.WriteLine("Test with 'hello':");
+        RunValidation(validators, "hello");
 
+        Console.WriteLine("\nTest with '':");
+        RunValidation(validators, "");
     }
 }
