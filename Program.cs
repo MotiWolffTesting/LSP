@@ -95,28 +95,21 @@
     // }
 
     // 5
-    public static void RunValidation(List<Validator> validators, string input)
+    public static void RunValidation(List<IValidator> validators, string input)
     {
         foreach (var validator in validators)
         {
-            try
-            {
-                bool result = validator.IsValid(input);
-                Console.WriteLine($"{validator.GetType().Name}: {result}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"{validator.GetType().Name}: Exception {ex.Message}");
-            }
+            bool result = validator.IsValid(input);
+            Console.WriteLine($"{validator.GetType().Name}: {result}");
         }
     }
 
     public static void Main()
     {
-        var validators = new List<Validator>
+        var validators = new List<IValidator>
         {
-            new Validator(),
-            new StrictValidator()
+            new LengthValidator(),
+            new NotEmptyValidator()
         };
 
         Console.WriteLine("Test with 'hello':");
