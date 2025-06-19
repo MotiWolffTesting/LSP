@@ -1,33 +1,34 @@
 ﻿public class Bird
 {
-    public virtual void Fly()
-    {
-        Console.WriteLine("I'm flying!");
-    }
 }
 
 public class Penguin : Bird
 {
-    public override void Fly()
+    // CANNOT FLY
+}
+
+public class Sparrow : Bird, ICanFly
+{
+    public void Fly()
     {
-        Console.WriteLine("I cannot fly.");
+        Console.WriteLine("I CAN FLY!");
     }
 }
 
 
 class Program
 {
-    public static void MakeBirdFly(Bird b)
+    public static void MakeBirdFly(ICanFly bird)
     {
-        b.Fly();
+        bird.Fly();
     }
 
     public static void Main()
     {
-        Bird sparrow = new Bird();
+        Sparrow sparrow = new Sparrow();
         Penguin penguin = new Penguin();
 
         MakeBirdFly(sparrow);
-        MakeBirdFly(penguin);
+        MakeBirdFly(penguin); // COMPILE ERROR: PENGUIN DOES NOT IMPLEMENT ICanFly
     }
 }
