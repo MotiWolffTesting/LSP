@@ -38,20 +38,44 @@
     //     TestSquareArea(square); // 25 - Correct!
     // }
 
-    // 3
-    public static void ExportDocument(IPdfExporter exporter)
+    // // 3
+    // public static void ExportDocument(IPdfExporter exporter)
+    // {
+    //     exporter.ExportToPDF();
+    // }
+
+    // public static void Main()
+    // {
+    //     // Working
+    //     var pdfExporter = new DocumentExporter();
+    //     ExportDocument(pdfExporter);
+
+    //     // Fixing to use interface
+    //     var onlineEporter = new OnlineEporter();
+    //     onlineEporter.ExportToHTML();
+    // }
+
+    // 4
+    public static void SumBalance(List<BankAccount> accounts)
     {
-        exporter.ExportToPDF();
+        decimal total = 0;
+        foreach (var account in accounts)
+        {
+            total += account.GetAvailableBalance();
+        }
+        Console.WriteLine($"Total Balance: {total}");
     }
 
     public static void Main()
     {
-        // Working
-        var pdfExporter = new DocumentExporter();
-        ExportDocument(pdfExporter);
+        var accounts = new List<BankAccount>
+        {
+            new BankAccount(1000),
+            new BankAccount(500)
+        };
+        SumBalance(accounts); // 1500
 
-        // Fixing to use interface
-        var onlineEporter = new OnlineEporter();
-        onlineEporter.ExportToHTML();
+        accounts.Add(new DebtAccount(200));
+        SumBalance(accounts); // 1300 is confusing
     }
 }
