@@ -1,34 +1,34 @@
-﻿public class Bird
+﻿class Program
 {
-}
+    // 1
+    // public static void MakeBirdFly(ICanFly bird)
+    // {
+    //     bird.Fly();
+    // }
 
-public class Penguin : Bird
-{
-    // CANNOT FLY
-}
+    // public static void Main()
+    // {
+    //     Sparrow sparrow = new Sparrow();
+    //     Penguin penguin = new Penguin();
 
-public class Sparrow : Bird, ICanFly
-{
-    public void Fly()
+    //     MakeBirdFly(sparrow);
+    //     MakeBirdFly(penguin); // COMPILE ERROR: PENGUIN DOES NOT IMPLEMENT ICanFly
+    // }
+
+    // 2
+    public static void TestArea(Rectangle shape)
     {
-        Console.WriteLine("I CAN FLY!");
-    }
-}
-
-
-class Program
-{
-    public static void MakeBirdFly(ICanFly bird)
-    {
-        bird.Fly();
+        shape.Width = 5;
+        shape.Height = 10;
+        Console.WriteLine(shape.Area());
     }
 
     public static void Main()
     {
-        Sparrow sparrow = new Sparrow();
-        Penguin penguin = new Penguin();
+        Rectangle rectangle = new Rectangle();
+        Square square = new Square();
 
-        MakeBirdFly(sparrow);
-        MakeBirdFly(penguin); // COMPILE ERROR: PENGUIN DOES NOT IMPLEMENT ICanFly
+        TestArea(rectangle); // 50
+        TestArea(square); // Output will be 50 but wrong
     }
 }
