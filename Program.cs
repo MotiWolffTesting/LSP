@@ -16,11 +16,17 @@
     // }
 
     // 2
-    public static void TestArea(Rectangle shape)
+    public static void TestRectangleArea(Rectangle rectangle)
     {
-        shape.Width = 5;
-        shape.Height = 10;
-        Console.WriteLine(shape.Area());
+        rectangle.Width = 5;
+        rectangle.Height = 10;
+        Console.WriteLine($"Rectangle Area: {rectangle.Area()}");
+    }
+
+    public static void TestSquareArea(Square square)
+    {
+        square.Side = 5;
+        Console.WriteLine($"Square Area: {square.Area()}");
     }
 
     public static void Main()
@@ -28,7 +34,7 @@
         Rectangle rectangle = new Rectangle();
         Square square = new Square();
 
-        TestArea(rectangle); // 50
-        TestArea(square); // Output will be 50 but wrong
+        TestRectangleArea(rectangle); // 50
+        TestSquareArea(square); // 25 - Correct!
     }
 }

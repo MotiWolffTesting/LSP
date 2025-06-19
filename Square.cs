@@ -1,4 +1,10 @@
-public class Square : Rectangle
+public class Square
 {
-    // No special implementaion
+    // Changing implementaion
+    public int Side { get; set; }
+
+    public int Area()
+    {
+        return Side * Side;
+    }
 }
